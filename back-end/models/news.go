@@ -21,6 +21,24 @@ func init() {
 	orm.RegisterModel(new(News))
 }
 
+func GetAcceptedNewsBy(Limit,offset int) ([]*News,error) {
+	var news []*News
+	o := orm.NewOrm();
+	qs := o.QueryTable("news")
+	_,err := qs.Filter("status",1).Limit(Limit,offset).All(&news)
+	return news,err
+}
+
+func GetAllNewsBy(Limit,offset int) ([]*News,error) {
+	var news []*News
+	o := orm.NewOrm();
+	qs := o.QueryTable("news")
+	_,err := qs.Limit(Limit,offset).All(&news)
+	return news,err
+}
+
+
+
 //to save news
 func (this *News) save() error {
 	if (this.Content == "") || (this.Title == "" ){
@@ -35,7 +53,7 @@ func (this *News) save() error {
 
 
 //update
-func (this *News) Update()  {
+func (this *News) Update() error {
 	if (this.Content == "") || (this.Title == "" ){
 		return missingAtribute
 	}
@@ -43,5 +61,7 @@ func (this *News) Update()  {
 
 	o := orm.NewOrm();
 	o.Update(this)
+
+	return nil
 
 }
