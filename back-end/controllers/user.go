@@ -2,7 +2,6 @@ package controllers
 
 import (
 	"Coop-Agile/back-end/models"
-	"fmt"
 )
 
 
@@ -77,10 +76,8 @@ func (this *UserController) RegisterControl() {
 
 	if err != nil {
 		this.SetSession("error",err.Error())
-		fmt.Println(err)
 		this.Redirect("/user/register",302)
 	}
-	fmt.Println("test Budur")
 		this.Redirect("/login",302)
 
 
