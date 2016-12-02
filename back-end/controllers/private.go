@@ -12,7 +12,8 @@ type PrivateController struct {
 func (controller *PrivateController) Prepare() {
 	v := controller.GetSession("login")
 	if v == nil {
-		controller.Redirect("/login", 304)
+
+		controller.Redirect("/login", 303)
 	}
 
 //only for private area
