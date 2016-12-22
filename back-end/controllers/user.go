@@ -13,6 +13,10 @@ import (
 type UserController struct {
 	PublicController
 }
+
+type PrivateUserController struct {
+	PrivateController
+}
 //login page static
 func (this *UserController) LoginStaticPage() {
 	if this.GetSession("error") != "" {
@@ -79,6 +83,16 @@ func (this *UserController) RegisterControl() {
 		this.Redirect("/user/register",302)
 	}
 		this.Redirect("/login",302)
+}
+
+func (this *PrivateUserController) Userlist() {
+	this.Data["firstname"] = this.GetSession("firstname")
+	this.Data["lastname"] = this.GetSession("lastname")
+	this.Data["email"] = this.GetSession("email")
+	this.Data["liste"] =  models.GetAllUser()
+	this.TplName = "users.tpl"
+
+
 
 
 

@@ -125,6 +125,14 @@
                 <b class="arrow"></b>
             </li>
 
+            <li class="">
+                <a href="/admin/user">
+                    <i class="menu-icon fa fa-list"></i>
+                    <span class="menu-text">Users</span>
+                </a>
+
+                <b class="arrow"></b>
+            </li>
 
 
         </ul><!-- /.nav-list -->
@@ -158,6 +166,19 @@
                 </div><!-- /.page-header -->
 
                 <div class="row">
+                    <form method="post" action="/admin/news">
+                        <div class="form-group">
+                            <h3 style="font-family:'Tahoma';text-align:center;color: #717171;">Add News</h3>
+                        </div>
+                        <center> <div class="form-group">
+                            <input name="titleTxt" type="text" placeholder="Title"/>
+                        </div></center>
+                        <center> <div class="form-group" >
+                            <center><input name="haberIcerigitxt" type="text" style="height:85px; padding:15px;" placeholder="haber icerigi"/></center>
+                        </div></center>
+                        <center><div class="form-group" style="text-align:center;" >
+                            <button name="addNewsBtn" type="submit">Add</button>
+                        </div></center>
                 </div><!-- /.row -->
             </div><!-- /.page-content -->
         </div>

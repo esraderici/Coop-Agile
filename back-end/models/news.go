@@ -29,6 +29,14 @@ func GetAcceptedNewsBy(Limit,offset int) ([]*News,error) {
 	return news,err
 }
 
+func GetOneNews(Id int) News {
+	var news News
+	o := orm.NewOrm();
+	qs := o.QueryTable("news")
+	qs.Filter("id",Id).One(&news)
+	return news
+}
+
 func GetAllNewsBy(Limit,offset int) ([]*News,error) {
 	var news []*News
 	o := orm.NewOrm();
@@ -37,10 +45,13 @@ func GetAllNewsBy(Limit,offset int) ([]*News,error) {
 	return news,err
 }
 
-
+func (this *News) Delete() {
+	o := orm.NewOrm();
+	o.Delete(this)
+}
 
 //to save news
-func (this *News) save() error {
+func (this *News) Save() error {
 	if (this.Content == "") || (this.Title == "" ){
 		return missingAtribute
 	}
@@ -65,3 +76,5 @@ func (this *News) Update() error {
 	return nil
 
 }
+
+

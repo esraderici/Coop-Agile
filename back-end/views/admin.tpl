@@ -126,6 +126,16 @@
             </li>
 
 
+            <li class="">
+                <a href="/admin/user">
+                    <i class="menu-icon fa fa-list"></i>
+                    <span class="menu-text">Users</span>
+                </a>
+
+                <b class="arrow"></b>
+            </li>
+
+
 
         </ul><!-- /.nav-list -->
 
@@ -158,7 +168,35 @@
                 </div><!-- /.page-header -->
 
                 <div class="row">
-                    ytkytiuiuiiuyuyo
+                    <table class="table table-striped table-hover table-bordered">
+                        <thead>
+                        <tr>
+                            <th>Yazar ismi</th>
+                            <th>Haber Basligi</th>
+                            <th>Haber Icerigi</th>
+                            <th>Yayin durumu</th>
+                            <th>Publish</th>
+                            <th>Delete</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+
+                        {{range $key,$response := .liste}}
+                        <tr>
+                            <td>{{$response.User.Firstname}} - {{$response.User.Lastname}}</td>
+                            <td>{{$response.News.Title}}</td>
+                            <td>{{$response.News.Content}}</td>
+                            {{if compare $response.News.Status 1}}
+                            <td>Yayinda</td>
+                            {{else}}
+                            <td>Beklemede</td>
+                            {{end}}
+                            <td><a href="/admin/publish/{{$response.News.Id}}" class="btn btn-link">Publish</a></td>
+                            <td><a href="/admin/delete/{{$response.News.Id}}" class="btn btn-link">Delete</a></td>
+                        </tr>
+                        {{end}}
+                        </tbody>
+                        </table>
                 </div><!-- /.row -->
             </div><!-- /.page-content -->
         </div>

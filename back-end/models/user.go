@@ -44,7 +44,22 @@ func GetUserByUsernameandPassword(Username,Password string) (User,error) {
 
 	return  User,nil
 }
+func GetUserById(id int) User {
+	var usr User
+	o := orm.NewOrm();
+	o.QueryTable("user").Filter("id",id).One(&usr)
+	return usr
 
+}
+func GetAllUser() []User {
+
+	var usrlist []User
+	o := orm.NewOrm();
+	o.QueryTable("user").All(&usrlist)
+
+	return usrlist
+
+}
 func (this *User) Save() (error){
 
 	if (this.Username == "" || this.Password == ""){
@@ -61,8 +76,6 @@ func (this *User) Save() (error){
 	if err != nil {
 		return UnknownError
 	}
-
-
 	return nil
 
 }
